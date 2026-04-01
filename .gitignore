@@ -1,1 +1,25 @@
+# --- Python ---
+__pycache__/
 venv/
+.env
+
+# --- MLflow (로컬 기록은 무시) ---
+mlruns/
+mlruns.db
+mlartifacts/
+artifacts/
+
+# --- DVC (영수증 빼고 본체는 무시) ---
+.dvc/cache
+.dvc/tmp
+.dvc/config.local
+
+# --- 시스템/설정 ---
+.vscode/
+.DS_Store
+*.log
+
+# --- 데이터 (중요: 영수증은 올리고 원본은 무시) ---
+data/*
+!data/*.dvc
+!data/.gitignore
