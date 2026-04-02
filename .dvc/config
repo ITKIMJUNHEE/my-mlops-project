@@ -1,4 +1,7 @@
 [core]
-    remote = mlops_dvc_storage
-['remote "mlops_dvc_storage"']
-    url = gdrive://1YGZqn82UNPRWKMMk1UwO7QupbhsvOdEe
+    remote = origin
+['remote "origin"']
+    url = https://dagshub.com/ITKIMJUNHEE/my-mlops-project.dvc
+    auth = basic
+    user = ITKIMJUNHEE
+    password = a0e5073457eb7de34d3744ba4873ee8735345e77

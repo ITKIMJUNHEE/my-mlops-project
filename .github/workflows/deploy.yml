@@ -19,6 +19,24 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install dvc  # DagsHub는 기본 HTTP 방식이므로 dvc만 있어도 됩니다.
+
+      - name: Pull data from DVC
+        env:
+          # GitHub Secrets에 등록된 값들을 가져옵니다.
+          DVC_REMOTE_USER: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
+          DVC_REMOTE_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+        run: |
+          # 1. 창고 주소를 강제로 다시 설정 (가장 확실한 방법)
+          dvc remote add -d origin https://dagshub.com/ITKIMJUNHEE/my-mlops-project.dvc --force
+          
+          # 2. 인증 설정 (사용자 이름과 토큰 사용)
+          dvc remote modify origin auth basic
+          dvc remote modify origin user $DVC_REMOTE_USER
+          dvc remote modify origin password $DVC_REMOTE_PASSWORD
+          
+          # 3. 데이터 가져오기
+          dvc pull -r origin
 
       - name: Train and Log to MLflow
         env:
@@ -26,4 +44,6 @@ jobs:
           MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: |
+          # 데이터가 잘 왔는지 확인용 (로그에 찍힙니다)
+          ls -R data/
           python train_with_mlflow.py
