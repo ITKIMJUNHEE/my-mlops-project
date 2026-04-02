@@ -39,10 +39,10 @@ except FileNotFoundError:
 # ── 2. 실험 파라미터 목록 정의 ────────────────────────────────
 run_results = []                                             # 각 run의 결과를 담을 리스트 (나중에 최고 모델 선택용)
 param_list = [
-    {"n_estimators": 50,  "max_depth": 2},                  # 트리 50개, 최대 깊이 2 (단순한 모델)
-    {"n_estimators": 100, "max_depth": 3},                  # 트리 100개, 최대 깊이 3
-    {"n_estimators": 200, "max_depth": 5},                  # 트리 200개, 최대 깊이 5
-    {"n_estimators": 300, "max_depth": 4},                  # 트리 300개, 최대 깊이 4 (복잡한 모델)
+    {"n_estimators": 60,  "max_depth": 3},                  # 트리 50개, 최대 깊이 2 (단순한 모델)
+    {"n_estimators": 120, "max_depth": 4},                  # 트리 100개, 최대 깊이 3
+    {"n_estimators": 250, "max_depth": 5},                  # 트리 200개, 최대 깊이 5
+    {"n_estimators": 350, "max_depth": 6},                  # 트리 300개, 최대 깊이 4 (복잡한 모델)
 ]
  
 # ── 3. 파라미터별 실험 실행 ───────────────────────────────────
